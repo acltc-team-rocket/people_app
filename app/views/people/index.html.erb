@@ -1,5 +1,5 @@
 <div ng-app="app">
-  <div ng-controller="peopleCtrl">
+  <div ng-controller="peopleCtrl" ng-init="setup()">
     <div ng-repeat="person in people">
       <h2 ng-click="toggleBio(person)">{{person.name}}</h2>
       <p ng-if="person.bioVisible">{{person.bio}}</p>
