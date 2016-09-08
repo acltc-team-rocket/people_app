@@ -1,7 +1,11 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
     <div>
-      Filter: <input ng-model="personFilter">
+      <datalist id="names">
+        <option ng-repeat="person in people">{{person.name}}</option>
+        <option ng-repeat="person in people">{{person.bio}}</option>           
+      </datalist>
+      Filter: <input ng-model="personFilter" list="names">    
     </div>
     <div>
       <button ng-click="toggleByAttribute('name')">Sort By Name</button>
