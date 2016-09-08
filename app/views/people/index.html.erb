@@ -1,11 +1,18 @@
 <div ng-app="app">
   <div ng-controller="peopleCtrl" ng-init="setup()">
-    Name Filter: <input ng-model="nameFilter">
-    Bio Filter: <input ng-model="bioFilter">
-    <div ng-repeat="person in people | filter: {name: nameFilter}">
+    <div>
+      Filter: <input ng-model="personFilter">
+    </div>
+    <div>
+      <button ng-click="toggleByAttribute('name')">Sort By Name</button>
+      <button ng-click="toggleByAttribute('bio')">Sort By Bio</button>
+    </div>
+
+   
+    <div ng-repeat="person in people | filter: personFilter | orderBy:orderAttribute:descending">
       <h2 ng-click="toggleBio(person)">{{person.name}}</h2>
       <p ng-if="person.bioVisible">{{person.bio}}</p>
-      <button ng-click="deletePerson($index)">Delete Person (aka kill)</button>
+      <button ng-click="deletePerson(person)">Delete Person (aka kill)</button>
     </div>
 
     <div>

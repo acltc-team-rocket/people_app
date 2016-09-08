@@ -28,8 +28,22 @@
       });
     }
 
-    $scope.deletePerson = function(index) {
-      $scope.people.splice(index, 1);
+    $scope.deletePerson = function(person) {
+      $http.delete("/api/v1/people/" + person.id).then(function(response) {
+        var index = $scope.people.indexOf(person);
+        $scope.people.splice(index, 1);
+      }, function(error) {
+        $scope.deleteErrors = error.data.errors;
+      });
+      
+    }
+
+    $scope.toggleByAttribute = function(attribute) {
+      if (attribute == $scope.orderAttribute) {
+        $scope.descending = !$scope.descending
+      } else {
+        $scope.orderAttribute = attribute;
+      }
     }
 
     window.$scope = $scope;
