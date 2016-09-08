@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module("app").controller("peopleCtrl", function($scope, $http) {
+  angular.module("app").controller("peopleCtrl", ['$scope', '$http', function($scope, $http) {
 
     $scope.setup = function() {
       $http.get("/api/v1/people.json").then(function(response) {
@@ -47,5 +47,5 @@
     }
 
     window.$scope = $scope;
-  });
+  }]);
 })();
